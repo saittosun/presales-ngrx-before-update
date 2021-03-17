@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private store: CustomerFacade) { }
 
   ngOnInit(): void {
-    this.customers$ = this.store.getCustomers().results;
-
+    this.customers$ = this.store.selectAll();
+    this.store.getCustomers();
   }
 
   searchThis(val: string): void {

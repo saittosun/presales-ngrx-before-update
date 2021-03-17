@@ -14,9 +14,11 @@ export const CUSTOMER_INITIAL_STATE: CustomerListState = {
 
 export const listReducer = createReducer(
   CUSTOMER_INITIAL_STATE as any,
-  on(getCustomers, (actionState: CustomerListState) => (
-    actionState
-  )) as any,
+  on(getCustomers, (actionState: CustomerListState) => ({
+    ...actionState,
+    loading: true,
+    error: null
+  })) as any,
   on(
     getCustomersSuccess,
     (state: CustomerListState, { results }: any) => ({

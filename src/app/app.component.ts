@@ -1,17 +1,10 @@
-import { CustomerFacade } from '~customers/services/customer.facade';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'lead-follow-up';
-
-  constructor(private store: CustomerFacade) {}
-
-  ngOnInit(): void {
-    this.store.selectAll();
-  }
 }
