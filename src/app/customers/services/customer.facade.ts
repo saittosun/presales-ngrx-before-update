@@ -28,7 +28,7 @@ export class CustomerFacade {
     return this.store.pipe(select(CUSTOMERS_ERROR));
   }
 
-  public getCustomers(): void {
-    this.store.dispatch(getCustomers());
+  public getCustomers() {
+    return this.store.dispatch(getCustomers());
   }
 }

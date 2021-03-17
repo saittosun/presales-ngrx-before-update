@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { Customer } from '~types/customer';
 import { CustomerFacade } from '~customers/services/customer.facade';
-
-import { ApiService } from '../core/services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,8 +17,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private store: CustomerFacade) { }
 
   ngOnInit(): void {
-    this.customers$ = this.store.selectAll();
-    this.store.getCustomers();
+    this.customers$ = this.store.getCustomers().results;
+
   }
 
   searchThis(val: string): void {
