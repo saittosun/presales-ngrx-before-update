@@ -3,7 +3,7 @@ import { Customer } from './../../types/customer';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { catchError, find, map, switchMap, tap } from "rxjs/operators";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 
 import { CustomerService } from "../services/customer.service";
 
@@ -38,7 +38,7 @@ export class CustomerEffects {
       this.customerService.updateCustomer(id, customer).pipe(
         map((customer: Customer) => updateCustomerSuccess({ customer })),
         tap(() => {
-          this.router.navigate(['customers', id])
+          this.router.navigate(['customers/customer-detail', id])
         }),
         catchError((error: any) => of(updateCustomerFailed({ error })))
         )

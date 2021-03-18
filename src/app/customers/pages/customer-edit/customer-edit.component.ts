@@ -46,7 +46,7 @@ export class CustomerEditPageComponent implements OnInit {
 
   update(val) {
     const customer: Customer = {
-      id: val.id,
+      id: +val.id,
       customerName: val.customerName,
       projectName: val.projectName,
       status: null,
@@ -108,12 +108,13 @@ export class CustomerEditPageComponent implements OnInit {
       return;
     };
     // const id = this.save(this.leadForm.value);
-    this.customer = this.leadForm.value;
+    this.updateCustomer = this.leadForm.value;
     console.log(this.leadForm.value);
     this.update(this.leadForm.value);
     // this.store.dispatch(this.update(this.leadForm.value))
-    // this.router.navigate(['../customer-detail', id], {relativeTo: this.route});
-    // this.router.navigate(['../'], {relativeTo: this.route});
+    // this.store.updateCustomer(this.id, this.updateCustomer);
+
+
     this.leadForm.reset()
     this.editted = false;
   }
