@@ -14,6 +14,7 @@ import { map, take } from 'rxjs/operators';
 export class CustomerDetailPageComponent implements OnInit {
   customers$: Observable<Customer[]>;
   private destroyed$ = new Subject<boolean>();
+  customers: Customer[];
   customer: Customer;
   id: number;
 
@@ -22,18 +23,24 @@ export class CustomerDetailPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    const customerId = this.route.params.subscribe((params: Params) => {
-      this.id = params.id;
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params.id;
     })
     this.customers$ = this.store.selectAll();
     this.store.getCustomers();
-    this.customers$.pipe(take(1), map(customers => {
-      return customers.find(customer => customer.id === +customerId)
-    })).subscribe(customer => console.log(customer))
+    this.customers$.pipe(take(1)).subscribe(customers => {
+      this.customers = customers;
+    })
+    this.customer = this.customers.find(customer => customer.id === +this.id)
   }
 
   onEdit() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
 }
