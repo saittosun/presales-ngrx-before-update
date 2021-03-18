@@ -18,3 +18,8 @@ export const CUSTOMERS_ERROR = createSelector(
   CUSTOMERS_ROOT_SELECTOR,
   (state: CustomersState) => state.list.error,
 );
+
+export const CUSTOMER_UPDATE = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.results
+)

@@ -3,9 +3,13 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 import { Customer } from '~types/customer';
+import { map, take } from 'rxjs/operators';
 
 @Injectable()
 export class CustomerService {
+  customers: Observable<Customer[]>;
+  customer: Customer;
+
   fetchCustomers(): Observable<Customer[]> {
     return of([
       {
@@ -104,5 +108,9 @@ export class CustomerService {
         }
       },
     ])
+  }
+
+  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+    return of({...customer, id})
   }
 }

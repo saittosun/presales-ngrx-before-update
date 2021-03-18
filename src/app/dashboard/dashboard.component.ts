@@ -25,6 +25,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.filter = val;
   }
 
+  // searchThis(val: string): void {
+  //   if (val === null || val === '') {
+  //     this.filteredCustomers = [...this.customers]
+  //     return;
+  //   }
+  //   this.filteredCustomers = [...this.customers.filter(customer => {
+  //     return customer.customerName.toLowerCase().includes(val.toLowerCase()) || customer.projectName.toLowerCase().includes(val.toLowerCase())
+  //   })]
+  // }
+
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();

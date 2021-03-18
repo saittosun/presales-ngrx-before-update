@@ -1,1 +1,22 @@
-<p>customers works!</p>
+<div class="container mt-5">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Projects Of Customer</th>
+        <th scope="col">Address</th>
+        <th scope="col">Contact Person</th>
+        <th scope="col">Customer Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers" routerLink="customer-detail/{{customer.id}}">
+        <td>{{customer.customerName}}</td>
+        <td>{{customer.projectName}}</td>
+        <td>{{customer.address.addressline}}</td>
+        <td>{{customer.firstName}} {{customer.lastName}}</td>
+        <td><i class="fa fa-arrow-circle-right"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

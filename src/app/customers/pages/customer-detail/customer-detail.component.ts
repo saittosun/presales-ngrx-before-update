@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Customer } from '~types/customer';
 import { CustomerFacade } from '~customers/services/customer.facade';
 import { Observable, Subject } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer-detail',

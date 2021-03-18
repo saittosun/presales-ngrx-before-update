@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { CustomerService } from 'src/app/core/services/customer.service';
 import { Countries } from '~types/countries';
 import { Country } from '~types/country';
 import { Customer } from '~types/customer';
@@ -24,8 +23,7 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
-    private customerService: CustomerService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();

@@ -1,8 +1,10 @@
+import { Customer } from './../../types/customer';
 import { Action, ActionReducerMap, createReducer, on } from "@ngrx/store";
 import {
   getCustomers,
   getCustomersFailed,
-  getCustomersSuccess
+  getCustomersSuccess,
+  updateCustomerSuccess
 } from "./customer.actions";
 import { CustomersState, CustomerListState } from "./customer.types";
 
@@ -35,7 +37,31 @@ export const listReducer = createReducer(
       loading: false,
       error
     })
-  ) as any
+  ) as any,
+  on(
+    updateCustomerSuccess,
+    (state: CustomerListState, { customer }: {customer: Customer}) => {
+      const customerIndex = state.results.findIndex(item => item.id === customer.id)
+      if (customerIndex === -1) {
+        return {
+          ...state,
+          results: state.results.concat(customer),
+          loading: false,
+          error: null
+        }
+      }
+      return  {
+        ...state,
+        results: [
+          ...state.results.slice(0, customerIndex),
+          customer,
+          ...state.results.slice(customerIndex + 1)
+        ],
+        loading: false,
+        error: null
+      }
+    }
+  )
 );
 
 function listReducerWrapper(state: CustomerListState, action: Action) {
