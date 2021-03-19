@@ -7,7 +7,7 @@ import { catchError, map, switchMap, tap } from "rxjs/operators";
 
 import { CustomerService } from "../services/customer.service";
 
-import { getCustomersFailed, updateCustomerFailed, updateCustomerSuccess } from "./customer.actions";
+import { addCustomerSuccess, getCustomersFailed, updateCustomerFailed, updateCustomerSuccess } from "./customer.actions";
 import { getCustomersSuccess } from "./customer.actions";
 import { CustomerActions } from "./customer.actions";
 
@@ -39,6 +39,21 @@ export class CustomerEffects {
         map((customer: Customer) => updateCustomerSuccess({ customer })),
         tap(() => {
           this.router.navigate(['customers/customer-detail', id])
+        }),
+        catchError((error: any) => of(updateCustomerFailed({ error })))
+        )
+      )
+    )
+  );
+
+  public addCustomer$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(CustomerActions.addCustomer),
+    switchMap(({customer}: {customer: Customer;}) =>
+      this.customerService.addCustomer(customer).pipe(
+        map((customer: Customer) => addCustomerSuccess({ customer })),
+        tap(() => {
+          this.router.navigate(['customers/customer-detail'])
         }),
         catchError((error: any) => of(updateCustomerFailed({ error })))
         )

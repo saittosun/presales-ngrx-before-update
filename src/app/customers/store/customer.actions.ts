@@ -8,7 +8,11 @@ export enum CustomerActions {
   getCustomersFailed = '[Customers]: get all customers failed',
   updateCustomer = '[Customer-Edit]: update a customer',
   updateCustomerSuccess = '[Customer-Edit]: update customer success',
-  updateCustomerFailed = '[Customer-Edit]: update customer failed'
+  updateCustomerFailed = '[Customer-Edit]: update customer failed',
+  addCustomer = '[Customer-New-Form]: add a customer',
+  addCustomerSuccess = '[Customer-New-Form]: add customer success',
+  addCustomerFailed = '[Customer-New-Form]: add customer failed'
+
 }
 
 export const getCustomers = createAction(CustomerActions.getCustomers);
@@ -38,3 +42,17 @@ export const updateCustomerFailed = createAction(
   props<{ error: string }>()
 );
 
+export const addCustomer = createAction(
+  CustomerActions.addCustomer,
+  props<{customer: Customer}>()
+);
+
+export const addCustomerSuccess = createAction(
+  CustomerActions.addCustomerSuccess,
+  props<{ customer: Customer }>()
+);
+
+export const addCustomerFailed = createAction(
+  CustomerActions.addCustomerFailed,
+  props<{ error: string }>()
+);

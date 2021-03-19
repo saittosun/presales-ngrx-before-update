@@ -91,7 +91,7 @@ export class CustomerService {
       {
         id: 5,
         customerName: 'Brugge',
-        projectName: 'Nova',
+        projectName: 'presales',
         status: 'offer',
         date: 'end of june',
         firstName: 'Jane',
@@ -113,4 +113,9 @@ export class CustomerService {
   updateCustomer(id: number, customer: Customer): Observable<Customer> {
     return of({...customer, id})
   }
+
+  addCustomer(customer: Customer): Observable<Customer>{
+    return of({...customer})
+  }
+
 }

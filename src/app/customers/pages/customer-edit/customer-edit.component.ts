@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { CustomerFacade } from '~customers/services/customer.facade';
 import { Countries } from '~types/countries';
 import { Country } from '~types/country';
@@ -13,11 +12,10 @@ import { Customer } from '~types/customer';
   templateUrl: './customer-edit.component.html',
   styleUrls: ['./customer-edit.component.scss']
 })
-export class CustomerEditPageComponent implements OnInit {
+export class CustomerEditPageComponent implements OnInit, OnDestroy {
   customers$: Observable<Customer[]>;
   customers: Customer[];
   customer: Customer;
-  updateCustomer: Customer;
   id: number;
   leadForm: FormGroup;
   countries: Country [] = new Countries().countries;
@@ -31,44 +29,43 @@ export class CustomerEditPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params.id;
+      this.id = +params.id;
     });
     this.customers$ = this.store.selectAll();
     this.store.getCustomers();
-    this.customers$.pipe(take(1)).subscribe(customers => {
+    this.customers$.subscribe(customers => {
       this.customers = customers;
     })
     this.customer = this.customers.find(customer => {
-      return customer.id === +this.id
+      return customer.id === this.id
     })
     this.createForm();
   }
 
-  update(val) {
-    const customer: Customer = {
-      id: +val.id,
-      customerName: val.customerName,
-      projectName: val.projectName,
-      status: null,
-      date: null,
-      firstName: val.firstName,
-      lastName: val.lastName,
-      email: val.email,
-      phonenumber: val.phonenumber,
-      vat: val.vat,
-      address: {
-        addressline: val.addressline1,
-        city: val.city,
-        state: val.state,
-        country: val.country,
-        zip: val.zip
-      },
-
-    }
-    this.store.updateCustomer(this.id, customer);
-    // console.log(this.store.loadCustomers());
-    return customer.id;
-  }
+  // update(val) {
+  //   const customer: Customer = {
+  //     id: this.id,
+  //     customerName: val.customerName,
+  //     projectName: val.projectName,
+  //     status: null,
+  //     date: null,
+  //     firstName: val.firstName,
+  //     lastName: val.lastName,
+  //     email: val.email,
+  //     phonenumber: val.phonenumber,
+  //     vat: val.vat,
+  //     address: {
+  //       addressline: val.addressline1,
+  //       city: val.city,
+  //       state: val.state,
+  //       country: val.country,
+  //       zip: val.zip
+  //     }
+  //   }
+  //   this.store.updateCustomer(this.id, customer);
+  //   // console.log(customer.id);
+  //   // return customer.id;
+  // }
 
   private createForm() {
     this.leadForm = this.fb.group({
@@ -101,20 +98,19 @@ export class CustomerEditPageComponent implements OnInit {
   }
 
   onEditForm() {
-    console.log('burdayim');
     this.editted = true;
     if (this.leadForm.invalid) {
       alert('You must fill the required fields!')
       return;
     };
-    // const id = this.save(this.leadForm.value);
-    this.updateCustomer = this.leadForm.value;
+    // const id = this.update(this.leadForm.value);
     console.log(this.leadForm.value);
-    this.update(this.leadForm.value);
+    this.customer = this.leadForm.value;
+    // this.update(this.leadForm.value);
+    console.log(this.id);
+    this.store.updateCustomer(this.id, this.customer)
     // this.store.dispatch(this.update(this.leadForm.value))
     // this.store.updateCustomer(this.id, this.updateCustomer);
-
-
     this.leadForm.reset()
     this.editted = false;
   }

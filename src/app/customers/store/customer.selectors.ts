@@ -23,3 +23,8 @@ export const CUSTOMER_UPDATE = createSelector(
   CUSTOMERS_ROOT_SELECTOR,
   (state: CustomersState) => state.list.results
 )
+
+export const CUSTOMER_ADD = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.results
+)

@@ -1,6 +1,7 @@
 import { Customer } from './../../types/customer';
 import { Action, ActionReducerMap, createReducer, on } from "@ngrx/store";
 import {
+  addCustomerSuccess,
   getCustomers,
   getCustomersFailed,
   getCustomersSuccess,
@@ -61,7 +62,16 @@ export const listReducer = createReducer(
         error: null
       }
     }
-  )
+  ) as any,
+  on(
+    addCustomerSuccess,
+    (state: CustomerListState, { customer }: {customer: Customer}) => ({
+      ...state,
+      results: state.results.concat(customer),
+      loading: false,
+      error: null
+    })
+  ) as any,
 );
 
 function listReducerWrapper(state: CustomerListState, action: Action) {

@@ -1,5 +1,4 @@
-import { CUSTOMER_UPDATE } from './../store/customer.selectors';
-import { updateCustomer } from './../store/customer.actions';
+import { updateCustomer, addCustomer } from './../store/customer.actions';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -36,5 +35,9 @@ export class CustomerFacade {
 
   public updateCustomer(id: number, customer: Customer): void {
     this.store.dispatch(updateCustomer({id, customer}))
+  }
+
+  public addCustomer(customer: Customer): void {
+    this.store.dispatch(addCustomer({customer}))
   }
 }

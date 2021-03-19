@@ -1,3 +1,4 @@
+import { CustomerFacade } from '~customers/services/customer.facade';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,43 +17,54 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
   customername: any;
   id: number;
   leadForm: FormGroup;
-  customers: Customer[] = [];
+  customer: Customer
+  // customers: Customer[] = [];
   countries: Country[] = new Countries().countries;
   submitted = false;
   private destroyed$ = new Subject<boolean>();
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute) { }
+              private router: Router,
+              private route: ActivatedRoute,
+              private store: CustomerFacade) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.customer = this.leadForm.value;
+    console.log(this.customer);
   }
 
-  save(val) {
-    const customer: Customer = {
-      id: Date.now(),
-      customerName: val.customerName,
-      projectName: val.projectName,
-      status: null,
-      date: null,
-      firstName: val.firstName,
-      lastName: val.lastName,
-      email: val.email,
-      phonenumber: val.phonenumber,
-      vat: val.vat,
-      address: {
-        addressline: val.addressline1,
-        city: val.city,
-        state: val.state,
-        country: val.country,
-        zip: val.zip
-      },
+  // save(val) {
+  //   const customer: Customer = {
+  //     id: Date.now(),
+  //     customerName: val.customerName,
+  //     projectName: val.projectName,
+  //     status: null,
+  //     date: null,
+  //     firstName: val.firstName,
+  //     lastName: val.lastName,
+  //     email: val.email,
+  //     phonenumber: val.phonenumber,
+  //     vat: val.vat,
+  //     address: {
+  //       addressline: val.addressline1,
+  //       city: val.city,
+  //       state: val.state,
+  //       country: val.country,
+  //       zip: val.zip
+  //     },
 
-    };
-    // this.store.saveCustomer(customer);
-    return customer.id;
-  }
+  //   };
+  //   console.log(customer);
+  //   this.store.addCustomer(customer)
+  //   // this.store.updateCustomer(this.id, customer)
+  //   // this.store.saveCustomer(customer);
+  //   console.log(customer.id);
+  //   return customer.id;
+  //   this.customer = customer;
+  //   console.log(customer);
+  //   console.log(this.customer);
+  // }
 
 
   private createForm() {
@@ -91,8 +103,31 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
       alert('You must fill the required fields!');
       return;
     }
-    const id = this.save(this.leadForm.value);
-    this.router.navigate(['../customer-detail', id], { relativeTo: this.route });
+
+    const customer: Customer = {
+      id: Date.now(),
+      customerName: this.leadForm.value.customerName,
+      projectName: this.leadForm.value.projectName,
+      status: null,
+      date: null,
+      firstName: this.leadForm.value.firstName,
+      lastName: this.leadForm.value.lastName,
+      email: this.leadForm.value.email,
+      phonenumber: this.leadForm.value.phonenumber,
+      vat: this.leadForm.value.vat,
+      address: {
+        addressline: this.leadForm.value.addressline,
+        city: this.leadForm.value.city,
+        state: this.leadForm.value.state,
+        country: this.leadForm.value.country,
+        zip: this.leadForm.value.zip
+      }
+    }
+    // this.save(this.customer);
+    console.log(this.leadForm.value);
+    console.log(this.customer);
+    this.store.addCustomer(customer)
+    this.router.navigate(['../customer-detail', customer.id], { relativeTo: this.route });
     this.leadForm.reset();
     this.submitted = false;
   }

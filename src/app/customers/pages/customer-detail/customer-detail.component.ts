@@ -28,10 +28,12 @@ export class CustomerDetailPageComponent implements OnInit {
     })
     this.customers$ = this.store.selectAll();
     this.store.getCustomers();
-    this.customers$.pipe(take(1)).subscribe(customers => {
+    this.customers$.subscribe(customers => {
+      console.log(customers);
       this.customers = customers;
     })
     this.customer = this.customers.find(customer => customer.id === +this.id)
+    // this.store.updateCustomer(this.id, this.customer)
   }
 
   onEdit() {
