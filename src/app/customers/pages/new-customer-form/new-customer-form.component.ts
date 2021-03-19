@@ -96,12 +96,6 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.submitted = true;
-    if (this.leadForm.invalid) {
-      alert('You must fill the required fields!');
-      return;
-    }
-
     const customer: Customer = {
       id: Date.now(),
       customername: this.leadForm.value.customername,
@@ -114,13 +108,20 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
       phonenumber: this.leadForm.value.phonenumber,
       vat: this.leadForm.value.vat,
       address: {
-        addressline: this.leadForm.value.addressline,
+        addressline1: this.leadForm.value.addressline1,
+        addressline2: this.leadForm.value.addressline2,
         city: this.leadForm.value.city,
         state: this.leadForm.value.state,
         country: this.leadForm.value.country,
         zip: this.leadForm.value.zip
       }
     }
+    this.submitted = true;
+    if (this.leadForm.invalid) {
+      alert('You must fill the required fields!');
+      return;
+    }
+
     console.log(customer);
     // this.save(this.customer);
     console.log(this.leadForm.value);

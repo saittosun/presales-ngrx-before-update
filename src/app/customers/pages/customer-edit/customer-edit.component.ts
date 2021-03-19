@@ -67,7 +67,7 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
   private createForm() {
     this.leadForm = this.fb.group({
       customername: new FormControl(this.customer.customername, Validators.required),
-      addressline1: new FormControl(this.customer.address.addressline, Validators.required),
+      addressline1: new FormControl(this.customer.address.addressline2, Validators.required),
       addressline2: new FormControl(''),
       country: new FormControl(this.customer.address.country, Validators.required),
       city: new FormControl(this.customer.address.city, Validators.required),

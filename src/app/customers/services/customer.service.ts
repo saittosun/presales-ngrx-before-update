@@ -24,7 +24,7 @@ export class CustomerService {
         phonenumber: 11111111,
         vat: 11,
         address: {
-          addressline: 'kouterbaan',
+          addressline1: 'kouterbaan',
           city: 'denderleeuw',
           state: 'oost-vlanderen',
           country: 'belgie',
@@ -43,7 +43,7 @@ export class CustomerService {
         phonenumber: 22222222,
         vat: 11,
         address: {
-          addressline: 'kouterbaan',
+          addressline1: 'kouterbaan',
           city: 'denderleeuw',
           state: 'oost-vlanderen',
           country: 'belgie',
@@ -62,7 +62,7 @@ export class CustomerService {
         phonenumber: 11111111,
         vat: 11,
         address: {
-          addressline: 'kouterbaan',
+          addressline1: 'kouterbaan',
           city: 'denderleeuw',
           state: 'oost-vlanderen',
           country: 'belgie',
@@ -81,7 +81,7 @@ export class CustomerService {
         phonenumber: 11111111,
         vat: 11,
         address: {
-          addressline: 'kouterbaan',
+          addressline1: 'kouterbaan',
           city: 'denderleeuw',
           state: 'oost-vlanderen',
           country: 'belgie',
@@ -100,7 +100,7 @@ export class CustomerService {
         phonenumber: 11111111,
         vat: 11,
         address: {
-          addressline: 'kouterbaan',
+          addressline1: 'kouterbaan',
           city: 'denderleeuw',
           state: 'oost-vlanderen',
           country: 'belgie',
