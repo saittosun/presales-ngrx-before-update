@@ -26,14 +26,16 @@ export class CustomerDetailPageComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params.id;
     })
+    console.log(this.id);
     this.customers$ = this.store.selectAll();
     this.store.getCustomers();
     this.customers$.subscribe(customers => {
       console.log(customers);
       this.customers = customers;
     })
+    console.log(this.customers);
     this.customer = this.customers.find(customer => customer.id === +this.id)
-    // this.store.updateCustomer(this.id, this.customer)
+    console.log(this.customer);
   }
 
   onEdit() {

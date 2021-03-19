@@ -30,8 +30,6 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createForm();
-    this.customer = this.leadForm.value;
-    console.log(this.customer);
   }
 
   // save(val) {
@@ -123,6 +121,7 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
         zip: this.leadForm.value.zip
       }
     }
+    console.log(customer);
     // this.save(this.customer);
     console.log(this.leadForm.value);
     console.log(this.customer);
