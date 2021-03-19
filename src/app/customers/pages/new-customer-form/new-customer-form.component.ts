@@ -104,12 +104,12 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
 
     const customer: Customer = {
       id: Date.now(),
-      customerName: this.leadForm.value.customerName,
-      projectName: this.leadForm.value.projectName,
+      customername: this.leadForm.value.customername,
+      projectname: this.leadForm.value.projectname,
       status: null,
       date: null,
-      firstName: this.leadForm.value.firstName,
-      lastName: this.leadForm.value.lastName,
+      firstname: this.leadForm.value.firstname,
+      lastname: this.leadForm.value.lastname,
       email: this.leadForm.value.email,
       phonenumber: this.leadForm.value.phonenumber,
       vat: this.leadForm.value.vat,

@@ -5,9 +5,11 @@ import {
   getCustomers,
   getCustomersFailed,
   getCustomersSuccess,
+  setCustomers,
   updateCustomerSuccess
 } from "./customer.actions";
 import { CustomersState, CustomerListState } from "./customer.types";
+import { Observable } from 'rxjs';
 
 export const CUSTOMER_INITIAL_STATE: CustomerListState = {
   results: [],
@@ -25,10 +27,7 @@ export const listReducer = createReducer(
   on(
     getCustomersSuccess,
     (state: CustomerListState, { results }: any) => ({
-      ...state,
-      results,
-      loading: false,
-      error: null
+      ...state
     })
   ) as any,
   on(
@@ -68,6 +67,15 @@ export const listReducer = createReducer(
     (state: CustomerListState, { customer }: {customer: Customer}) => ({
       ...state,
       results: state.results.concat(customer),
+      loading: false,
+      error: null
+    })
+  ) as any,
+  on(
+    setCustomers,
+    (state: CustomerListState, { customers }: {customers: Customer[]}) => ({
+      ...state,
+      results: customers,
       loading: false,
       error: null
     })

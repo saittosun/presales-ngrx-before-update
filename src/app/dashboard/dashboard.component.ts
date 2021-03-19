@@ -1,3 +1,4 @@
+import { CustomerService } from './../customers/services/customer.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -11,26 +12,28 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  filter = '';
-  customers$: Observable<Customer[]>;
   private destroyed$ = new Subject<boolean>();
   customers: Customer[];
   filteredCustomers: Customer[]
 
-  constructor(private store: CustomerFacade) { }
+  constructor(private store: CustomerFacade,
+              private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.customers$ = this.store.selectAll();
-    this.store.getCustomers();
-    this.customers$.subscribe(customers => {
-      this.customers = customers;
+    this.store.getCustomers().subscribe(customers => {
+      if(customers.length === 0) {
+        // http request
+        this.customerService.fetchCustomers().subscribe(customers => {
+          this.store.setCustomers(customers);
+          this.customers = customers;
+          this.filteredCustomers = [...this.customers];
+        });
+      } else {
+        this.customers = customers;
+        this.filteredCustomers = [...this.customers];
+      }
     })
-    this.filteredCustomers = [...this.customers];
   }
-
-  // searchThis(val: string): void {
-  //   this.filter = val;
-  // }
 
   searchThis(val: string): void {
     if (val === null || val === '') {
@@ -38,8 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return;
     }
     this.filteredCustomers = [...this.customers.filter(customer => {
-      console.log(customer);
-      return customer.customerName.toLowerCase().includes(val.toLowerCase()) || customer.projectName.toLowerCase().includes(val.toLowerCase())
+      return customer.customername.toLowerCase().includes(val.toLowerCase()) || customer.projectname.toLowerCase().includes(val.toLowerCase())
     })]
   }
 

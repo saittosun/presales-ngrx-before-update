@@ -13,7 +13,6 @@ import { Customer } from '~types/customer';
   styleUrls: ['./customer-edit.component.scss']
 })
 export class CustomerEditPageComponent implements OnInit, OnDestroy {
-  customers$: Observable<Customer[]>;
   customers: Customer[];
   customer: Customer;
   id: number;
@@ -31,10 +30,8 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params: Params) => {
       this.id = +params.id;
     });
-    this.customers$ = this.store.selectAll();
-    this.store.getCustomers();
-    this.customers$.subscribe(customers => {
-      this.customers = customers;
+    this.store.getCustomers().subscribe(customers => {
+      this.customers = customers
     })
     this.customer = this.customers.find(customer => {
       return customer.id === this.id
@@ -69,7 +66,7 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
 
   private createForm() {
     this.leadForm = this.fb.group({
-      customername: new FormControl(this.customer.customerName, Validators.required),
+      customername: new FormControl(this.customer.customername, Validators.required),
       addressline1: new FormControl(this.customer.address.addressline, Validators.required),
       addressline2: new FormControl(''),
       country: new FormControl(this.customer.address.country, Validators.required),
@@ -77,8 +74,8 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
       state: new FormControl(this.customer.address.state, Validators.required),
       zip: new FormControl(this.customer.address.zip, Validators.required),
       vat: new FormControl(this.customer.vat, Validators.required),
-      firstname: new FormControl(this.customer.firstName, Validators.required),
-      lastname: new FormControl(this.customer.lastName, Validators.required),
+      firstname: new FormControl(this.customer.firstname, Validators.required),
+      lastname: new FormControl(this.customer.lastname, Validators.required),
       email: new FormControl(this.customer.email, [
         Validators.required,
         Validators.email,

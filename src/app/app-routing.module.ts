@@ -8,7 +8,7 @@ import { LeadsComponent } from './leads/leads.component';
 import { NewLeadFormComponent } from './leads/new-lead-form/new-lead-form.component';
 
 const routes: Routes = [
-  { path: 'customers', component: DashboardComponent },
+  { path: '', component: DashboardComponent },
   { path: 'leads', component: LeadsComponent },
   { path: 'leads/new-lead-form', component: NewLeadFormComponent },
   { path: 'leads/:id', component: LeadDetailComponent },

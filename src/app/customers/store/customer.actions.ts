@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Customer } from '~types/customer';
 
@@ -11,8 +12,8 @@ export enum CustomerActions {
   updateCustomerFailed = '[Customer-Edit]: update customer failed',
   addCustomer = '[Customer-New-Form]: add a customer',
   addCustomerSuccess = '[Customer-New-Form]: add customer success',
-  addCustomerFailed = '[Customer-New-Form]: add customer failed'
-
+  addCustomerFailed = '[Customer-New-Form]: add customer failed',
+  setCustomers = '[Dashboard http request]: set all customers'
 }
 
 export const getCustomers = createAction(CustomerActions.getCustomers);
@@ -56,3 +57,8 @@ export const addCustomerFailed = createAction(
   CustomerActions.addCustomerFailed,
   props<{ error: string }>()
 );
+
+export const setCustomers = createAction(
+  CustomerActions.setCustomers,
+  props<{customers: Customer[]}>()
+)
