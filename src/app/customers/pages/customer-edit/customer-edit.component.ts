@@ -67,8 +67,8 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
   private createForm() {
     this.leadForm = this.fb.group({
       customername: new FormControl(this.customer.customername, Validators.required),
-      addressline1: new FormControl(this.customer.address.addressline2, Validators.required),
-      addressline2: new FormControl(''),
+      addressline1: new FormControl(this.customer.address.addressline1, Validators.required),
+      addressline2: new FormControl(this.customer.address.addressline2),
       country: new FormControl(this.customer.address.country, Validators.required),
       city: new FormControl(this.customer.address.city, Validators.required),
       state: new FormControl(this.customer.address.state, Validators.required),
@@ -102,7 +102,27 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
     };
     // const id = this.update(this.leadForm.value);
     console.log(this.leadForm.value);
-    this.customer = this.leadForm.value;
+    // this.customer = this.leadForm.value;
+    this.customer = {
+      customername: this.leadForm.value.customername,
+      address : {
+        addressline1: this.leadForm.value.addressline1,
+        addressline2: this.leadForm.value.addressline2,
+        city: this.leadForm.value.city,
+        country: this.leadForm.value.country,
+        state: this.leadForm.value.state,
+        zip: this.leadForm.value.zip
+      },
+      vat: this.leadForm.value.vat,
+      firstname: this.leadForm.value.firstname,
+      lastname: this.leadForm.value.lastname,
+      phonenumber: this.leadForm.value.phonenumber,
+      email: this.leadForm.value.email,
+      projectname: this.leadForm.value.projectname,
+      date: null,
+      id: null,
+      status: null
+    }
     // this.update(this.leadForm.value);
     console.log(this.id);
     this.store.updateCustomer(this.id, this.customer)
