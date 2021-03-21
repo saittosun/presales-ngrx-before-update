@@ -117,10 +117,10 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
       lastname: this.leadForm.value.lastname,
       phonenumber: this.leadForm.value.phonenumber,
       email: this.leadForm.value.email,
-      projectname: this.leadForm.value.projectname,
-      date: null,
+      projectname: this.leadForm.value.projectname || 'renson',
+      date: this.leadForm.value.date || 'end of november',
       id: null,
-      status: null
+      status: this.leadForm.value.status || 'pitch'
     }
     // this.update(this.leadForm.value);
     console.log(this.id);
