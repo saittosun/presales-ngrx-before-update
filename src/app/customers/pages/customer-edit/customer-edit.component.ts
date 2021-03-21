@@ -60,7 +60,6 @@ export class CustomerEditPageComponent implements OnInit, OnDestroy {
   //     }
   //   }
   //   this.store.updateCustomer(this.id, customer);
-  //   // console.log(customer.id);
   //   // return customer.id;
   // }
 
