@@ -12,7 +12,7 @@ import { LeadService } from './services/lead.service';
 import { LeadFacade } from './services/lead.facade';
 import { LeadEffects } from './store/lead.effects';
 import { leadReducer } from './store/lead.reducer';
-import { LeadEditPageComponent } from './pages/lead-edit/lead-edit.component';
+import { LeadEditPageComponent } from './lead-edit/lead-edit.component';
 
 @NgModule({
   imports: [

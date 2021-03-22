@@ -7,27 +7,28 @@ import { SharedModule } from '~shared/shared.module';
 
 import { CustomersRoutingModule } from './customers.routing';
 import { CustomerDetailPageComponent } from './pages/customer-detail/customer-detail.component';
-// import { CustomerEditPageComponent } from './pages/customer-edit/customer-edit.component';
+import { CustomerEditPageComponent } from './pages/customer-edit/customer-edit.component';
 import { NewCustomerPageComponent } from './pages/new-customer-form/new-customer-form.component';
-// import { CustomersOverviewPageComponent } from './pages/overview/customers.component';
-// import { CustomerFacade } from './services/customer.facade';
-// import { CustomerService } from './services/customer.service';
-// import { CustomerEffects } from './store/customer.effects';
-// import { customerReducers } from './store/customer.reducer';
+import { CustomersOverviewPageComponent } from './pages/overview/customers.component';
+import { CustomerFacade } from './services/customer.facade';
+import { CustomerService } from './services/customer.service';
+import { CustomerEffects } from './store/customer.effects';
+import { customerReducers } from './store/customer.reducer';
 
 @NgModule({
   imports: [
     CommonModule,
     CustomersRoutingModule,
-    // StoreModule.forFeature('customers', customerReducers),
-    // EffectsModule.forFeature([CustomerEffects]),
+    StoreModule.forFeature('customers', customerReducers),
+    EffectsModule.forFeature([CustomerEffects]),
     SharedModule,
   ],
   declarations: [
     CustomerDetailPageComponent,
+    CustomerEditPageComponent,
     NewCustomerPageComponent,
+    CustomersOverviewPageComponent,
   ],
-  providers: []
-  // providers: [CustomerEffects, CustomerService, CustomerFacade]
+  providers: [CustomerEffects, CustomerService, CustomerFacade]
 })
 export class CustomersModule { }

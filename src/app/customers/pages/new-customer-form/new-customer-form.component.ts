@@ -1,4 +1,4 @@
-// import { CustomerFacade } from '~customers/services/customer.facade';
+import { CustomerFacade } from '~customers/services/customer.facade';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +25,8 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private store: CustomerFacade) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -125,6 +126,7 @@ export class NewCustomerPageComponent implements OnInit, OnDestroy {
     // this.save(this.customer);
     console.log(this.leadForm.value);
     console.log(this.customer);
+    this.store.addCustomer(customer)
     this.router.navigate(['../customer-detail', customer.id], { relativeTo: this.route });
     this.leadForm.reset();
     this.submitted = false;
