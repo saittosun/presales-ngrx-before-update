@@ -1,12 +1,12 @@
 import { Lead } from './../types/lead';
 import { LeadService } from './../leads/services/lead.service';
 import { LeadFacade } from './../leads/services/lead.facade';
-import { CustomerService } from './../customers/services/customer.service';
+// import { CustomerService } from './../customers/services/customer.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Customer } from '~types/customer';
-import { CustomerFacade } from '~customers/services/customer.facade';
+// import { CustomerFacade } from '~customers/services/customer.facade';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +18,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   customers: Lead[];
   filteredCustomers: Lead[]
 
-  constructor(private store: CustomerFacade,
-              private customerService: CustomerService,
+  constructor(
               private storeLead: LeadFacade,
               private leadService: LeadService) { }
 
