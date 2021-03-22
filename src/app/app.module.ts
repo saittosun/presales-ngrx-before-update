@@ -13,10 +13,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { CustomersModule } from './customers/customers.module';
+import { LeadsModule } from './leads/leads.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LeadDetailComponent } from './leads/pages/lead-detail/lead-detail.component';
-import { LeadsComponent } from './leads/leads.component';
-import { NewLeadFormComponent } from './leads/pages/new-lead-form/new-lead-form.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -24,11 +22,8 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    LeadsComponent,
     SearchComponent,
-    NotFoundComponent,
-    LeadDetailComponent,
-    NewLeadFormComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +35,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     SharedModule,
     CustomersModule,
+    LeadsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

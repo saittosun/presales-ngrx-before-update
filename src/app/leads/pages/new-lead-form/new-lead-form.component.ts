@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './new-lead-form.component.html',
   styleUrls: ['./new-lead-form.component.scss']
 })
-export class NewLeadFormComponent implements OnInit {
+export class NewLeadPageComponent implements OnInit {
 
 
   constructor() {}
