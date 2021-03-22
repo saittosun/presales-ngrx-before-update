@@ -11,10 +11,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let customer of customers" routerLink="customer-detail/{{customer.id}}">
-        <td>{{customer.customerName}}</td>
-        <td>{{customer.projectName}}</td>
-        <td>{{customer.address.addressline}}</td>
-        <td>{{customer.firstName}} {{customer.lastName}}</td>
+        <td>{{customer.customername}}</td>
+        <td>{{customer.projectname}}</td>
+        <td>{{customer.address.addressline1}}</td>
+        <td>{{customer.firstName}} {{customer.lastname}}</td>
         <td><i class="fa fa-arrow-circle-right"></i></td>
       </tr>
     </tbody>
