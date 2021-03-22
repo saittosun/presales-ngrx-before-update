@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LeadDetailComponent } from './leads/lead-detail/lead-detail.component';
+import { LeadDetailComponent } from './leads/pages/lead-detail/lead-detail.component';
 import { LeadsComponent } from './leads/leads.component';
-import { NewLeadFormComponent } from './leads/new-lead-form/new-lead-form.component';
+import { NewLeadFormComponent } from './leads/pages/new-lead-form/new-lead-form.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },

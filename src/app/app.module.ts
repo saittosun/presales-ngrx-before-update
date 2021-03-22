@@ -14,9 +14,9 @@ import { HeaderComponent } from './core/header/header.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { CustomersModule } from './customers/customers.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LeadDetailComponent } from './leads/lead-detail/lead-detail.component';
+import { LeadDetailComponent } from './leads/pages/lead-detail/lead-detail.component';
 import { LeadsComponent } from './leads/leads.component';
-import { NewLeadFormComponent } from './leads/new-lead-form/new-lead-form.component';
+import { NewLeadFormComponent } from './leads/pages/new-lead-form/new-lead-form.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
